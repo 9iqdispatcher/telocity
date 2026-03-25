@@ -1,0 +1,6 @@
+root        ::= char+
+char        ::= latin9 | cjk-punct
+
+latin9      ::= [\u0020-\u007E\u00A0-\u00FF\u20AC\t\r\n]
+
+cjk-punct   ::= [\u2000-\u206F\u3000-\u303F\uFF00-\uFFEF]

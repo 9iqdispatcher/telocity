@@ -1,0 +1,43 @@
+= telocity
+
+A CLI thing for poking at local LLMs. Only works with plain text files (use link:https://github.com/kovidgoyal/calibre[calibre]'s ebook-convert, luke) Not a srs program, just a playground for myself.  
+Program's strings are a testbed for tiny local llm translation, all UI strings other than `en-US.json` are translated with link:https://huggingface.co/bartowski/Qwen_Qwen3.5-35B-A3B-GGUF[bartowski/Qwen_Qwen3.5-35B-A3B-GGUF], `scripts/make_project_translations.ts` shows how it's done, default preset settings were used.
+
+== Installation
+
+Use the prepackaged bun+script executable releases if provided, or install the link:https://bun.com/[Bun javascript runtime], unpack the project where you want it installed and then:
+
+[source,bash]
+----
+bun install
+bun link
+----
+
+It is also compatible with Node (but slower startup), to install, unpack the repository where you want to run it and:
+
+[source,bash]
+----
+npm install
+npm install -g .
+----
+
+Generate bash completions with:
+
+[source,bash]
+----
+telocity co > _telocity_completions
+----
+
+== Recommended local models for us vramlets
+
+Recommended quants: Qx_K_L. Pick the biggest that fits your hardware and context length needs.
+
+link:https://huggingface.co/bartowski/Qwen_Qwen3.5-35B-A3B-GGUF[bartowski/Qwen_Qwen3.5-35B-A3B-GGUF] Use this over anything else if you have some system ram to spare. This is a large improvement over the previous Qwen in terms of general trivia/knowledge/niche vocabulary. It can stay coherent ingesting and outputting 20K tokens in a row, what more to ask?
+
+link:https://huggingface.co/bartowski/Qwen_Qwen3.5-4B-GGUF[bartowski/Qwen_Qwen3.5-4B-GGUF] Just the best of the size class. Strong large context handling.
+
+link:https://huggingface.co/bartowski/Qwen_Qwen3.5-2B-GGUF[bartowski/Qwen_Qwen3.5-2B-GGUF] Most coherent micro model. Almost reaches the level of language understanding in some language pairs as the previous 2507 4B.
+
+== Credits:
+
+link:https://github.com/huggingface/transformers.js[huggingface for transformers.js] (tokenworker.js was adapted from their tokenizer code and remains under their license and attribution.)

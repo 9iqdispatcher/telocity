@@ -1,0 +1,94 @@
+{
+  "// v1/completions": "// EXAMPLE",
+  "rwkv": {
+    "reasoningType": "instruct_only",
+    "metadata": { "helptext_key": "models.completion", "display": true },
+    "default": {
+      "prompt": {
+        "defSys": [
+          true,
+          "Instruction: 将以下文本翻译为{{ .LanguageTarget }}，注意只需要输出翻译后的结果，不要额外解释：:\n\n",
+          "system",
+          false
+        ],
+        "defPrep": [
+          true,
+          "Input: {{ .TextToInject }}\n\n{{ .TextToInject }}\n\n",
+          "user",
+          false
+        ],
+        "defPrefill": [true, "Response:<think></think>"]
+      },
+      "model": {
+        "temperature": [true, 0],
+        "top_k": [true, 64],
+        "top_p": [true, 1.0],
+        "model": [true, "rwkv"],
+        "url": "http://localhost:8080/v1/completions"
+      }
+    }
+  },
+  "// JSON_SCHEMA": "// EXAMPLE",
+  "qwenjson": {
+    "reasoningType": "instruct_only",
+    "default": {
+      "prompt": {
+        "defSys": [
+          true,
+          "You are tasked with providing valid JSON output to the user request.",
+          "system",
+          true
+        ]
+      },
+      "model": {
+        "chunkSize": 500,
+        "batchSize": 1,
+        "temperature": [true, 0],
+        "top_k": [true, 20],
+        "top_p": [true, 0.8],
+        "presence_penalty": [true, 1.5],
+        "hardTimeout": 15,
+        "model": [true, "qwen"],
+        "chat_template_kwargs": [true, { "enable_thinking": false }],
+        "response_format": [
+          true,
+          {
+            "type": "json_schema",
+            "json_schema": {
+              "name": "multi_location_climate_report",
+              "strict": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reports": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "location": { "type": "string" },
+                        "climate_zone": { "type": "string" },
+                        "seasonal_cycle": { "type": "string" },
+                        "average_precipitation": { "type": "string" },
+                        "temperature_profile": { "type": "string" }
+                      },
+                      "required": [
+                        "location",
+                        "climate_zone",
+                        "seasonal_cycle",
+                        "average_precipitation",
+                        "temperature_profile"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": ["reports"],
+                "additionalProperties": false
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

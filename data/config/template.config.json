@@ -1,0 +1,150 @@
+{
+  "DEFAULT_MODEL": "qwen",
+  "HARD_TIMEOUT": 2,
+  "IDLE_TIMEOUT": 1,
+  "CHUNK_SIZE": 10,
+  "BATCH_SIZE": 128,
+  "PARALLEL": 4,
+  "URL": "http://localhost:8080/v1/chat/completions",
+  "DELAY": 1,
+  "RETRY_DELAY": 5000,
+  "SOURCE_LANGUAGE": "the detected language",
+  "TARGET_LANGUAGE": "English",
+  "TERMINAL_PREPEND": "",
+  "DEFAULT_TF_PROMPT": "Write a summary, in English, of the following file.",
+  "TEMPLATES": {
+    "EN_TL_INSTRUCTIONS": "{{ .ContextualInformation }}Task: Translate the following text into {{ .LanguageTarget }}.\nConstraints: Output pure translation only. Omit all meta-commentary, reasoning, or conversational filler. Preserve original spacing and formatting strictly.\n\nSource Text:\n{{ .TextToInject }}",
+    "ZH_TL_INSTRUCTIONS": "{{ .ContextualInformation }}任务：将以下文本翻译为{{ .LanguageTarget }}。\n约束条件：仅输出纯译文。禁止输出任何元评论、推理或对话占位符。严格保留原始格式和换行。\n\n原文：\n{{ .TextToInject }}",
+    "ALT_EN_TL_INSTRUCTIONS": "{{ .ContextualInformation }}Task: Translate the following text from {{ .LanguageSource }} into {{ .LanguageTarget }}.\nConstraints: Output pure translation only. Omit all meta-commentary, reasoning, or conversational filler. Preserve original spacing and formatting strictly.\n\nSource Text:\n{{ .TextToInject }}",
+    "NO_MD": "Formatting constraint: Do not output markdown code blocks.\n\n"
+  },
+  "PARAM_CONFIGS": {
+    "onlineapi": {
+      "reasoningType": "instruct_only",
+      "metadata": {
+        "helptext_key": "models.fallback",
+        "display": true
+      },
+      "default": {
+        "prompt": {
+          "defPrep": [true, "{{EN_TL_INSTRUCTIONS}}", "user", false]
+        },
+        "model": {
+          "chunkSize": 500,
+          "batchSize": 4,
+          "delay": 60000,
+          "retryDelay": 5000,
+          "maxAttempts": 3,
+          "tempIncrement": 0.2,
+          "temperature": [true, 1],
+          "url": "http://SOMEDARNTHING:8080/v1/chat/completions",
+          "idleTimeout": 1,
+          "hardTimeout": 1,
+          "model": [true, "SOMETHING"]
+        }
+      }
+    },
+    "qwen": {
+      "reasoningType": "reason_and_instruct",
+      "metadata": {
+        "helptext_key": "models.dual",
+        "stripTags": {
+          "start": "<think>",
+          "end": "</think>"
+        },
+        "display": true
+      },
+      "instruct": {
+        "prompt": {
+          "defPrep": [true, "{{EN_TL_INSTRUCTIONS}}", "user", false]
+        },
+        "model": {
+          "chunkSize": 500,
+          "batchSize": 1,
+          "temperature": [true, 0],
+          "top_k": [true, 20],
+          "top_p": [true, 0.8],
+          "presence_penalty": [true, 1.5],
+          "hardTimeout": 15,
+          "model": [true, "qwen"],
+          "chat_template_kwargs": [
+            true,
+            {
+              "enable_thinking": false
+            }
+          ]
+        }
+      },
+      "reasoning": {
+        "prompt": {
+          "defPrep": [true, "{{EN_TL_INSTRUCTIONS}}", "user", false]
+        },
+        "model": {
+          "chunkSize": 400,
+          "batchSize": 1,
+          "temperature": [true, 0.6],
+          "top_k": [true, 20],
+          "top_p": [true, 0.95],
+          "presence_penalty": [true, 1.5],
+          "hardTimeout": 20,
+          "model": [true, "qwen"],
+          "chat_template_kwargs": [
+            true,
+            {
+              "enable_thinking": true
+            }
+          ]
+        }
+      }
+    },
+    "qwenmini": {
+      "reasoningType": "reason_and_instruct",
+      "metadata": {
+        "helptext_key": "models.dual",
+        "display": true
+      },
+      "instruct": {
+        "prompt": {
+          "defPrep": [
+            true,
+            "{{EN_TL_INSTRUCTIONS}}\n\n{{EN_TL_INSTRUCTIONS}}",
+            "user",
+            false
+          ]
+        },
+        "model": {
+          "temperature": [true, 0],
+          "top_k": [true, 20],
+          "top_p": [true, 0.8],
+          "presence_penalty": [true, 1.5],
+          "model": [true, "qwenmini"],
+          "chat_template_kwargs": [
+            true,
+            {
+              "enable_thinking": false
+            }
+          ]
+        }
+      },
+      "reasoning": {
+        "prompt": {
+          "defPrep": [true, "{{EN_TL_INSTRUCTIONS}}", "user", false]
+        },
+        "model": {
+          "temperature": [true, 0.6],
+          "top_k": [true, 20],
+          "top_p": [true, 0.95],
+          "presence_penalty": [true, 1.5],
+          "hardTimeout": 15,
+          "model": [true, "qwenmini"],
+          "chat_template_kwargs": [
+            true,
+            {
+              "enable_thinking": true
+            }
+          ]
+        }
+      }
+    }
+  }
+}

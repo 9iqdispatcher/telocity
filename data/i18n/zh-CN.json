@@ -1,0 +1,373 @@
+{
+  "m": {
+    "lcli": {
+      "deletionConfirm": "此操作不可撤销。确定要删除吗？(y/N): ",
+      "yN": "y",
+      "redacted": "[已隐藏]",
+      "deletionAborted": "删除已中止。"
+    },
+    "lllm": {
+      "retryWithTemp": "[尝试 {{ .Attempt }}] 分块处理失败。正在使用温度 {{ .Temp }} 重试...",
+      "processingComplete": "该文件的处理已完成。",
+      "anotherInstanceIsProcessing": "另一个实例正在处理此文件。请等待其完成或删除.lock 文件。",
+      "ctrlCPressed": "\n已按 Ctrl+C。正在完成当前批次并保存进度。再次按以强制退出。\n",
+      "ctrlCPressed2": "\n终止请求已发出。请稍候。\n",
+      "quittingWithoutSaving": "\n强制退出，不保存进度。\n",
+      "terminatedForcefully": "\n强制终止。进度未保存。\n",
+      "processedChunkOf": "已处理 {{ .Processed }} / {{ .Total }} 个分块",
+      "progressSavedTerminating": "进度已保存。正在终止。",
+      "progressFileDeleted": "哈希值为 {{ .Hash }} 的进度文件已删除。",
+      "filesMerged": "文件已成功合并至：{{ .MergedFileName }}",
+      "openingTag": "开始标签",
+      "closingTag": "结束标签",
+      "generatingRequests": "正在生成 {{ .Count }} 个请求以进行批量处理...",
+      "sourceEmpty": "源文件为空或仅包含空白字符。未生成输出。",
+      "wroteEntries": "已成功将 {{ .Count }} 条条目写入 {{ .TargetPath }}"
+    },
+    "c": {
+      "cfg": {
+        "cfgDeletedSuccessfully": "配置文件已成功删除。",
+        "localeSuccessfullyChanged": "区域设置已成功更改为 {{ .Locale }}。"
+      },
+      "models": {
+        "fallback": "适用于任何 OpenAI 兼容 API 的通用预设。",
+        "genericprep": "一种在用户文本前添加提示词的通用预设。",
+        "genericsys": "一种使用系统提示词的通用预设。",
+        "dual": "指令/推理 -r 切换预设。",
+        "instruct": "指令预设。",
+        "reasoning": "仅推理 -r 预设。",
+        "effort": "支持努力参数的推理预设。",
+        "completion": "v1/completions 预设，编辑配置文件进行设置。",
+        "noHelp": "此预设无帮助文本可用。"
+      },
+      "avg": {
+        "averageCharsPerLine": "非空行平均字符数（图素）：{{ .AvgChars }}",
+        "averageBytesPerLine": "非空行平均字节数：{{ .AvgBytes }}"
+      },
+      "rm": {
+        "filesToDelete": "将删除以下进度文件：",
+        "filesDeletedSuccessfully": "所有进度文件已成功删除。",
+        "noFilesToDelete": "未找到要删除的进度文件。"
+      },
+      "cm": {
+        "success": "已成功将 {{ .Lines }} 段文本并排生成至 -> {{ .Target }}"
+      },
+      "sp": {
+        "fileSplitSuccess": "成功拆分文件：{{ .SourcePath }}",
+        "partCreated": "  - 已创建部分 {{ .PartNumber }}: {{ .PartPath }}"
+      },
+      "st": {
+        "blockExtracted": "已提取定界符之间的内容。",
+        "blockDeleted": "已删除定界符之间的内容。",
+        "compressed": "已压缩空行。",
+        "newlinesNormalized": "文件内容已标准化并保存。"
+      },
+      "tc": {
+        "tc": "总令牌数：",
+        "avgTc": "每 {{ .ChunkSize }} 行的平均令牌数：",
+        "availableModelsForDownload": "可供下载的模型：{{ .AvailableModels }}",
+        "downloadingModelFiles": "正在下载 \"{{ .ModelName }}\" 的模型文件...",
+        "writingFilesTo": "正在将文件写入 {{ .StateDir }}...",
+        "downloadSuccess": "已成功下载 \"{{ .ModelName }}\" 的文件：",
+        "workerOomRetry": "[TokenWorkerPool] 工作进程崩溃/内存溢出。正在调整内存限制并重试分块... (剩余 {{ .Retries }} 次重试)"
+      },
+      "rd": {
+        "title": "Telocity 阅读器",
+        "previousBtn": "←上一页",
+        "nextBtn": "下一页→",
+        "instructions": "⬅️➡️ h/l shift+space/空格",
+        "instructions2": "⬅️➡️ h/l — ⬇️⬆️ j/k shift+space/空格",
+        "goToPage": "页码：",
+        "pageInfo": "第 {{ .currentPage }} 页，共 {{ .totalPages }} 页",
+        "pageInfoFallback": "第 1 页，共 1 页",
+        "ebookLoaded": "已加载电子书。",
+        "contentLoadError": "错误：无法加载内容。",
+        "serverShutdown": "宽限期已过。正在关闭服务器...",
+        "serverRunningAt": "电子书阅读器运行于 {{ .url }}",
+        "readingFile": "正在读取文件：{{ .sourcePath }}",
+        "notFound": "404 未找到"
+      }
+    }
+  },
+  "e": {
+    "lcli": {
+      "unknownErrorOccurred": "发生未知错误。",
+      "causePrefix": "原因：",
+      "unknownOption": "未知选项：'{{ .Option }}'。",
+      "unexpectedPositional": "意外的位置参数：'{{ .Argument }}'。",
+      "missingValue": "选项 '{{ .Option }}' 缺少参数。",
+      "notInteractive": "无人值守模式不支持交互式确认。",
+      "booleanWithValue": "选项 '{{ .Option }}' 不接受参数。",
+      "commandNotImplemented": "未实现命令：{{ .CommandAlias }}。",
+      "cfgCouldNotBeLoaded": "无法从 {{ .UserConfigPath }} 加载配置文件。",
+      "listFormatWidthWarning": "警告：空间不足以格式化列表描述。",
+      "processingAborted": "处理已中止。"
+    },
+    "v": {
+      "invalidArgArray": "提供的参数数组无效：{{ .OptionValue }}",
+      "invalidChunkSize": "分块大小无效。必须是 1 到 200000 之间的整数。提供：{{ .ChunkSize }}",
+      "invalidBatchSize": "批次大小无效。必须是 1 到 64 之间的整数。提供：{{ .BatchSize }}",
+      "invalidIndex": "最后索引无效。必须是正整数。提供：{{ .Index }}",
+      "invalidPrompt": "提供的提示词无效。必须是非空字符串。",
+      "invalidModel": "提供的模型名称无效：{{ .Model }}",
+      "invalidURL": "提供的 URL 无效：{{ .URL }}",
+      "invalidURLScheme": "URL 方案无效。必须以 http:// 或 https:// 开头。提供：{{ .URL }}",
+      "invalidAPIKey": "提供的 API 密钥无效：{{ .APIKey }}",
+      "invalidTemperatureRange": "温度必须是 0.0 到 2.0 之间的数字。",
+      "invalidTopPRange": "Top_p 必须是 0.0 到 1.0 之间的数字。",
+      "invalidTopKRange": "Top_k 必须是正整数。",
+      "invalidPenaltyRange": "频率/存在惩罚必须是 -2.0 到 2.0 之间的数字。",
+      "seedMustBePositiveInteger": "种子必须是正整数。",
+      "invalidDelayValue": "延迟/重试等待时间必须是非负数。",
+      "invalidImageArray": "图像输入无效。预期为数据 URI 数组，但收到：{{ .Value }}",
+      "invalidDataURI": "图像格式无效。预期为以 'data:' 开头的数据 URI 字符串，但收到：{{ .Value }}",
+      "unsupportedImageType": "警告：图像通配符模式 {{ .Args }} 未匹配任何支持的文件。",
+      "unsupportedImageType2": "跳过不支持的图像类型 \"{{ .Ext }}\"，文件：{{ .Image }}",
+      "imageNotFound": "警告：未找到图像文件，已跳过：{{ .Image }}",
+      "invalidKeepAlive": "提供的保持连接设置无效。预期为布尔值（true/false），但收到：{{ .Value }}",
+      "invalidOption": "无效的选项值：{{ .Value }}。"
+    },
+    "lllm": {
+      "undefinedParam": "未定义参数集。",
+      "reasoningNotSupported": "模型不支持推理。",
+      "invalidReasoningType": "推理类型无效，JSON 配置损坏。",
+      "promptMissing": "CLI 或配置文件中均未提供提示词，已中止。",
+      "fileNotFound": "文件未找到：{{ .FilePath }}",
+      "sourceRequired": "需要源路径。",
+      "sourceTargetRequired": "需要源路径和目标路径。",
+      "noFilesFound": "未找到符合条件的文件（扩展名：.{{ .Extension }}，已应用过滤）。",
+      "targetFileExists": "目标路径已存在：{{ .TargetPath }}",
+      "sourceAndTargetMustBeDifferent": "源路径和目标路径必须不同。",
+      "invalidFileSize": "文件大小超过最大限制 {{ .MAX_SIZE_MB }} MB。",
+      "emptyFile": "文件为空或仅包含空白字符。",
+      "idleTimeOut": "空闲超时已超出。未从服务器收到数据。",
+      "hardTimeOut": "硬超时已超出。请求完成时间过长。",
+      "tExceeded": "空闲超时已超出",
+      "unknownOpenAIError": "API 发生未知错误。",
+      "openaiApiError": "API 调用失败，状态 {{ .Status }}: {{ .Message }}",
+      "networkErrorOpenAI": "调用 {{ .URL }} 时发生网络错误。",
+      "networkErrorReason": "原因：{{ .Code }}",
+      "responseNull": "响应体为空",
+      "progressFileDoesNotExist": "哈希值为 {{ .Hash }} 的进度文件不存在。",
+      "llmAPICall": "LLM API 调用期间发生错误： ",
+      "initializingBatch": "初始化批量处理时出错。",
+      "failedLock": "创建锁文件失败。",
+      "failedToSaveProgress": "保存进度失败。",
+      "whileCalling_deleteProgressEntry": " 在调用 deleteProgressEntry 时。",
+      "stripNewLinesTypeError": "输入必须是字符串或字符串数组。",
+      "invalidFormat": "格式 '{{ .Format }}' 无效。支持的格式为 {{ .Available }}。",
+      "jsonlGenError": "生成 JSONL 文件期间发生错误。"
+    },
+    "c": {
+      "co": {
+        "coError": "警告：无法加载命令 {{ .Command }} 的模块。已跳过补全生成。"
+      },
+      "cfg": {
+        "editorNotFound": "未找到 $EDITOR 环境变量。请将 $EDITOR 设置为您首选的文本编辑器。",
+        "failedToWriteLocale": "写入区域设置文件失败：{{ .ErrorMessage }}",
+        "invalidLocale": "无效的区域设置：{{ .Lang }}。"
+      },
+      "mg": {
+        "extensionRequired": "需要文件扩展名。请使用 -e 或 --extension 标志。"
+      },
+      "rm": {},
+      "cm": {
+        "missingArgs": "错误：缺少必需的参数。预期格式为 <文件1> <文件2> <目标文件>",
+        "invalidWidth": "无效的列宽大小：{{ .Width }}。宽度必须是正整数。",
+        "diffLineCount": "错误：输入文件的非空行数不一致。",
+        "diffLineCount1": "- 输入 1 ({{ .File1 }}) 包含 {{ .Lines1 }} 个有效行。",
+        "diffLineCount2": "- 输入 2 ({{ .File2 }}) 包含 {{ .Lines2 }} 个有效行。"
+      },
+      "sp": {
+        "invalidSplitSize": "无效的大小：{{ .Size }}。必须是正数。"
+      },
+      "st": {
+        "delimiterPairRequired": "需要起始和结束定界符。"
+      },
+      "tc": {
+        "tokenizerDoesNotExist": "预设 '{{ .PresetName }}' 的分词器不存在。",
+        "modelNotFoundForDownload": "未找到模型 \"{{ .ModelName }}\"。",
+        "failedToDownload": "下载 {{ .ModelUrl }} 失败：{{ .Status }} {{ .StatusText }}",
+        "modelDownloadError": "模型下载期间发生错误：{{ .ErrorMessage }}",
+        "tokenizerFilesNotFound": "加载 {{ .TokenizerName }} 的分词器文件失败",
+        "poolShuttingDown": "工作进程池正在关闭。",
+        "workerCrashedCode": "工作进程以代码 {{ .Code }} 崩溃。"
+      }
+    }
+  },
+  "help": {
+    "generic": {
+      "header": "telocity：一款用于批量处理文本的 LLM 工具。",
+      "usage": "用法：telocity <命令> [选项]",
+      "commandHeader": "命令：",
+      "commandDescriptions": {
+        "tr": "逐块翻译文件。",
+        "tf": "逐块对文件应用转换提示词。",
+        "os": "使用可选的文件上下文执行单个提示词。",
+        "bg": "生成用于批量处理的 JSONL 文件。",
+        "cm": "并排比较并合并两个文件到一个输出文件中。",
+        "rd": "简单的基于 HTML 的纯文本阅读器。",
+        "st": "从文件中删除或提取定界符之间的内容。",
+        "mg": "将多个文本文件合并为一个文件。",
+        "sp": "将大文件拆分为较小的部分。",
+        "avg": "计算文件的平均行长度。",
+        "tc": "统计特定模型的令牌数。",
+        "rm": "删除已完成或卡住的作业的进度文件。",
+        "cfg": "管理应用程序配置。"
+      },
+      "footer": "有关任何命令的更多信息，请使用 `telocity <命令> --help`。",
+      "globalOptionsHeader": "全局选项：",
+      "flags": {
+        "version": "显示应用程序版本。"
+      }
+    },
+    "commands": {
+      "avg": {
+        "usage": "用法：telocity avg <源路径>",
+        "description": "计算文件中非空行的平均字符数（图素）和字节数。",
+        "flags": {}
+      },
+      "cfg": {
+        "usage": "用法：telocity cfg [选项]",
+        "description": "管理应用程序配置。",
+        "flags": {
+          "edit": "在默认编辑器中打开用户配置文件。",
+          "remove": "删除用户配置文件（会提示确认）。",
+          "lang": "设置应用程序语言。"
+        },
+        "footer": "支持的区域设置：\n{{ .LocaleList }}"
+      },
+      "rm": {
+        "usage": "用法：telocity rm <源路径> [选项]",
+        "description": "删除进度跟踪文件。",
+        "flags": {
+          "all": "删除所有进度文件。",
+          "force": "强制删除，无需确认。"
+        }
+      },
+      "cm": {
+        "usage": "用法: telocity cm <文件1> <文件2> <目标文件> [选项]",
+        "description": "并排比较并合并两个文件到一个输出文件中。",
+        "flags": {
+          "width": "设置输出中每一半的宽度（以列数为单位）。（默认值: {{ .Width }}）",
+          "force": "即使两个输入文件的行数不同，也强制进行合并。"
+        }
+      },
+      "mg": {
+        "usage": "用法：telocity mg <源目录> [目标目录] [选项]",
+        "description": "递归查找并合并源目录中的文本文件。支持通过命令行参数或源目录/当前目录中的 .mginclude/.mgignore 文件进行 Glob 模式过滤。",
+        "flags": {
+          "extension": "要查找的文件扩展名（必填）。",
+          "include": "要包含的 Glob 模式（以冒号分隔，例如 \"src/**:libs/**\"）。",
+          "exclude": "要排除的 Glob 模式（以冒号分隔，例如 \"tests/**:node_modules/**\"）。"
+        }
+      },
+      "os": {
+        "usage": "用法：telocity os \"<提示词>\" [输出文件] [选项]",
+        "description": "对 LLM 执行单个一次性提示词。它可以接受来自文件 (--file)、标准输入 (stdin) 和图像 (--image) 的上下文。LLM 的输出会流式传输到终端，或如果提供了 [输出文件] 则保存到该文件中。",
+        "flags": {
+          "file": "要附加到提示词作为上下文的文本文件路径。",
+          "outfile": "保存 LLM 输出的文件路径。这提供了一种替代指定 [输出文件] 作为位置参数的方法。",
+          "image": "用于视觉上下文的图像路径。支持通配符和冒号分隔的列表（例如 \"img1.jpg:*.png\"）。支持的格式：png, jpg/jpeg, gif, webp。",
+          "params": "选择模型参数预设（默认：{{ .DefaultModel }}）。",
+          "model": "覆盖预设中指定的模型名称。",
+          "url": "覆盖 API 端点 URL。",
+          "apikey": "提供请求所需的 API 密钥。",
+          "reason": "为支持它的预设启用推理模式。"
+        },
+        "footer": "可用预设：\n{{ .ModelParamList }}"
+      },
+      "sp": {
+        "usage": "用法：telocity sp <源路径> <目标目录> [选项]",
+        "description": "根据指定大小将大文件拆分为较小的部分，确保不破坏行。",
+        "flags": {
+          "size": "每个部分的最大大小（以兆字节为单位）（默认：{{ .Size }}）。"
+        }
+      },
+      "st": {
+        "usage": "用法：telocity st <源路径> <目标路径> [选项]",
+        "description": "从文件中删除或提取指定定界符之间的内容。",
+        "flags": {
+          "startdelimiter": "起始定界符。",
+          "enddelimiter": "结束定界符。",
+          "params": "使用预设中的起始/结束定界符。",
+          "extracttag": "提取定界符之间的内容而不是删除它。",
+          "compress": "压缩输出中的空行。",
+          "unformat": "删除基本 Markdown 格式（粗体/斜体）"
+        },
+        "footer": "带有标签的可用预设：\n{{ .ReasoningTagParamList }}"
+      },
+      "tc": {
+        "usage": "用法：telocity tc <源路径> [选项]",
+        "description": "使用特定模型的分词器统计文件中的令牌数。",
+        "flags": {
+          "chunksize": "覆盖每 X 行的平均令牌计数。",
+          "params": "要使用的模型预设（默认：{{ .DefaultModel }}）。"
+        },
+        "footer": "可用分词器：\n{{ .TokenParamList }}"
+      },
+      "tf": {
+        "usage": "用法：telocity tf <源路径> <目标路径> [选项]",
+        "description": "对源文件应用转换提示词，并逐块处理。使用 `--image` 时，源文件应包含图像的提示词。在此模式下，避免设置自定义 `--chunksize` 以确保提示词作为单个单元处理。",
+        "flags": {
+          "chunksize": "每块的行数（默认：{{ .ChunkSize }}）。",
+          "batchsize": "每批处理的块数（默认：{{ .BatchSize }}）。",
+          "parallel": "并发限制（默认：{{ .Parallel }}）。",
+          "prompt": "可选指令，用于附加到源文件内容。使用 --image 标志时通常省略。",
+          "image": "用于视觉上下文的图像路径。支持通配符和冒号分隔的列表（例如 \"img1.jpg:*.png\"）。支持的格式：png, jpg/jpeg, gif, webp。",
+          "sysprompt": "设置自定义系统提示词。",
+          "params": "选择模型参数预设（默认：{{ .DefaultModel }}）。",
+          "model": "覆盖预设中的模型名称。",
+          "url": "覆盖 API 端点 URL。",
+          "apikey": "提供 API 密钥。",
+          "wait": "设置 API 调用之间的延迟（秒）（默认：{{ .Delay }}）。",
+          "retrywait": "设置重试失败 API 调用前的最小等待时间（秒）（默认：{{ .RetryDelay }}）。",
+          "reason": "为支持它的预设启用推理模式。"
+        },
+        "footer": "可用预设：\n{{ .ModelParamList }}"
+      },
+      "tr": {
+        "usage": "用法：telocity tr <源路径> <目标路径> [选项]",
+        "description": "逐块将文件从源语言翻译到目标语言。",
+        "flags": {
+          "chunksize": "每块的行数（默认：{{ .ChunkSize }}）。",
+          "batchsize": "每批处理的块数（默认：{{ .BatchSize }}）。",
+          "parallel": "并发限制（默认：{{ .Parallel }}）。",
+          "source": "源语言（默认：\"{{ .SourceLanguage }}\"）。",
+          "target": "目标语言（默认：\"{{ .TargetLanguage }}\"）。",
+          "context": "提供翻译的额外上下文。",
+          "params": "选择模型参数预设（默认：{{ .DefaultModel }}）。",
+          "model": "覆盖预设中的模型名称。",
+          "url": "覆盖 API 端点 URL。",
+          "apikey": "提供 API 密钥。",
+          "wait": "设置 API 调用之间的延迟（秒）（默认：{{ .Delay }}）。",
+          "retrywait": "设置重试失败 API 调用前的最小等待时间（秒）（默认：{{ .RetryDelay }}）。",
+          "reason": "为支持它的预设启用推理模式。"
+        },
+        "footer": "可用预设：\n{{ .ModelParamList }}"
+      },
+      "bg": {
+        "usage": "用法：telocity bg [选项] <源文件> <目标 JSONL 文件>",
+        "description": "生成用于批量处理翻译的 JSONL 文件。",
+        "flags": {
+          "format": "JSONL 文件的输出格式。",
+          "chunksize": "每块/请求的行数。（默认：{{ .ChunkSize }}）",
+          "model": "覆盖参数集中指定的模型。",
+          "params": "用于提示词和模型配置的参数集。（默认：{{ .DefaultModel }}）",
+          "source": "翻译提示词的源语言。",
+          "target": "翻译提示词的目标语言。",
+          "context": "包含在每个块的提示词中的额外上下文。",
+          "reason": "使用所选模型参数集的‘推理’变体。"
+        },
+        "footer": "\n可用参数集：\n{{ .ModelParamList }}\n\n可用 JSONL 格式：\n{{ .FormatsList }}"
+      },
+      "rd": {
+        "usage": "用法：telocity rd <源路径>",
+        "description": "启动本地 Web 服务器以在简单阅读器中显示文本文件。",
+        "flags": {
+          "basic": "使用简单的垂直滚动布局而不是默认的电子书分页。在非常大的文件上性能更好 + 适合测试浏览器内置翻译功能。"
+        }
+      }
+    }
+  }
+}

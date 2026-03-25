@@ -1,0 +1,8 @@
+node_modules/**
+scripts/**
+**/libs/vendoring/**
+helpcommand*
+tccommand*
+LLMSOutputStreamer*
+basicreader*
+paginatedreader*

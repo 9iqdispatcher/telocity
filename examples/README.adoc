@@ -1,0 +1,13 @@
+just my personal presets for llama.cpp which can serve as examples
+
+[source,sh]
+----
+llama-server --offline --grammar-file $LLAMA_CNF_DIR/latin9.gbnf --samplers "penalties;top_k;top_p;temperature" --models-preset $LLAMA_CNF_DIR/presets.ini --models-max 1 --webui-config-file $LLAMA_CNF_DIR/webuiconfig.json --reasoning-budget 2048 --reasoning-budget-message "[Constraint Reached: Reasoning budget exhausted. Pivoting immediately to generate output based on current structure.]"
+----
+
+link:otherpresets.json[otherpresets.json] shows how other models like completion based APIs might be implemented as presets.
+
+link:presets.ini[presets.ini] and link:webuiconfig.json[webuiconfig.json] are configuration for the llama.cpp router mode and webui respectively.
+
+link:ascii.gbnf[ascii.gbnf] and link:latin9.gbnf[latin9.gbnf] are grammar files that restrict generation to ascii and latin9 charsets (the latter also allows CJK punctuation/quote marks etc).
+

@@ -1,0 +1,373 @@
+{
+  "m": {
+    "lcli": {
+      "deletionConfirm": "This action is irreversible. Are you sure you want to delete? (y/N): ",
+      "yN": "y",
+      "redacted": "[REDACTED]",
+      "deletionAborted": "Deletion aborted."
+    },
+    "lllm": {
+      "retryWithTemp": "[Attempt {{ .Attempt }}] Chunk failed. Retrying with temperature {{ .Temp }}...",
+      "processingComplete": "Processing for this file is already complete.",
+      "anotherInstanceIsProcessing": "Another instance is already processing this file. Please wait for it to finish or remove the .lock file.",
+      "ctrlCPressed": "\nCtrl+C pressed. Finishing current batch and saving progress. Press again to force quit.\n",
+      "ctrlCPressed2": "\nTermination already requested. Please wait.\n",
+      "quittingWithoutSaving": "\nForce quitting without saving progress.\n",
+      "terminatedForcefully": "\nTerminated forcefully. Progress not saved.\n",
+      "processedChunkOf": "Processed chunk {{ .Processed }} of {{ .Total }}",
+      "progressSavedTerminating": "Progress saved. Terminating.",
+      "progressFileDeleted": "Progress file for hash {{ .Hash }} deleted.",
+      "filesMerged": "Files successfully merged into: {{ .MergedFileName }}",
+      "openingTag": "Opening tag",
+      "closingTag": "Closing tag",
+      "generatingRequests": "Generating {{ .Count }} requests for batch processing...",
+      "sourceEmpty": "Source file is empty or contains only whitespace. No output generated.",
+      "wroteEntries": "Successfully wrote {{ .Count }} entries to {{ .TargetPath }}"
+    },
+    "c": {
+      "cfg": {
+        "cfgDeletedSuccessfully": "Configuration file(s) deleted successfully.",
+        "localeSuccessfullyChanged": "Locale successfully changed to {{ .Locale }}."
+      },
+      "models": {
+        "fallback": "A generic preset for any OpenAI-compatible API.",
+        "genericprep": "A generic preset that prepends the prompt to the user's text.",
+        "genericsys": "A generic preset that uses a system prompt.",
+        "dual": "Instruct/Reasoning -r switch preset.",
+        "instruct": "Instruct preset.",
+        "reasoning": "Reasoning -r only preset.",
+        "effort": "Reasoning preset with effort parameter support.",
+        "completion": "v1/completions preset, edit config file for setup.",
+        "noHelp": "No help text available for this preset."
+      },
+      "avg": {
+        "averageCharsPerLine": "Average characters (graphemes) per non-empty line: {{ .AvgChars }}",
+        "averageBytesPerLine": "Average bytes per non-empty line: {{ .AvgBytes }}"
+      },
+      "rm": {
+        "filesToDelete": "The following progress files will be deleted:",
+        "filesDeletedSuccessfully": "All progress files deleted successfully.",
+        "noFilesToDelete": "No progress files found to delete."
+      },
+      "cm": {
+        "success": "Successfully generated side-by-side text out of {{ .Lines }} line segments into -> {{ .Target }}"
+      },
+      "sp": {
+        "fileSplitSuccess": "Successfully split file: {{ .SourcePath }}",
+        "partCreated": "  - Part {{ .PartNumber }} created: {{ .PartPath }}"
+      },
+      "st": {
+        "blockExtracted": "Content between delimiters extracted.",
+        "blockDeleted": "Content between delimiters deleted.",
+        "compressed": "Empty lines compressed.",
+        "newlinesNormalized": "File content normalized and saved."
+      },
+      "tc": {
+        "tc": "Total token count:",
+        "avgTc": "Average token count per {{ .ChunkSize }} line(s):",
+        "availableModelsForDownload": "Available models for download: {{ .AvailableModels }}",
+        "downloadingModelFiles": "Downloading model files for \"{{ .ModelName }}\"...",
+        "writingFilesTo": "Writing files to {{ .StateDir }}...",
+        "downloadSuccess": "Successfully downloaded files for \"{{ .ModelName }}\":",
+        "workerOomRetry": "[TokenWorkerPool] Worker crashed/OOM. Adjusting memory limits and retrying chunk... ({{ .Retries }} retries left)"
+      },
+      "rd": {
+        "title": "Telocity Reader",
+        "previousBtn": "←Prev",
+        "nextBtn": "Next→",
+        "instructions": "⬅️➡️ h/l shift+space/space",
+        "instructions2": "⬅️➡️ h/l — ⬇️⬆️ j/k shift+space/space",
+        "goToPage": "Page:",
+        "pageInfo": "Page {{ .currentPage }} of {{ .totalPages }}",
+        "pageInfoFallback": "Page 1 of 1",
+        "ebookLoaded": "Loaded ebook.",
+        "contentLoadError": "Error: Could not load content.",
+        "serverShutdown": "Grace period over. Shutting down server...",
+        "serverRunningAt": "Ebook reader is running at {{ .url }}",
+        "readingFile": "Reading file: {{ .sourcePath }}",
+        "notFound": "404 Not Found"
+      }
+    }
+  },
+  "e": {
+    "lcli": {
+      "unknownErrorOccurred": "An unknown error occurred.",
+      "causePrefix": "Cause:",
+      "unknownOption": "Unknown option: '{{ .Option }}'.",
+      "unexpectedPositional": "Unexpected positional argument: '{{ .Argument }}'.",
+      "missingValue": "Option '{{ .Option }}' argument is missing.",
+      "notInteractive": "Interactive confirmation is not supported in unattended mode.",
+      "booleanWithValue": "Option '{{ .Option }}' does not take an argument.",
+      "commandNotImplemented": "Command not implemented: {{ .CommandAlias }}.",
+      "cfgCouldNotBeLoaded": "Configuration file could not be loaded from {{ .UserConfigPath }}.",
+      "listFormatWidthWarning": "Warning: Not enough space to format list description.",
+      "processingAborted": "Processing aborted."
+    },
+    "v": {
+      "invalidArgArray": "Invalid argument array provided: {{ .OptionValue }}",
+      "invalidChunkSize": "Invalid chunk size. Must be an integer between 1 and 200000. Provided: {{ .ChunkSize }}",
+      "invalidBatchSize": "Invalid batch size. Must be an integer between 1 and 64. Provided: {{ .BatchSize }}",
+      "invalidIndex": "Invalid lastIndex. Must be a positive integer. Provided: {{ .Index }}",
+      "invalidPrompt": "Invalid prompt provided. Must be a non-empty string.",
+      "invalidModel": "Invalid model name provided: {{ .Model }}",
+      "invalidURL": "Invalid URL provided: {{ .URL }}",
+      "invalidURLScheme": "Invalid URL scheme. Must start with http:// or https://. Provided: {{ .URL }}",
+      "invalidAPIKey": "Invalid API key provided: {{ .APIKey }}",
+      "invalidTemperatureRange": "Temperature must be a number between 0.0 and 2.0.",
+      "invalidTopPRange": "Top_p must be a number between 0.0 and 1.0.",
+      "invalidTopKRange": "Top_k must be a positive integer.",
+      "invalidPenaltyRange": "Frequency/Presence penalty must be a number between -2.0 and 2.0.",
+      "seedMustBePositiveInteger": "Seed must be a positive integer.",
+      "invalidDelayValue": "Delay/RetryWait must be a non-negative number.",
+      "invalidImageArray": "Invalid image input. Expected an array of data URIs, but received: {{ .Value }}",
+      "invalidDataURI": "Invalid image format. Expected a data URI string starting with 'data:', but received: {{ .Value }}",
+      "unsupportedImageType": "Warning: The image glob pattern {{ .Args }} did not match any supported files.",
+      "unsupportedImageType2": "Skipping unsupported image type \"{{ .Ext }}\" for file: {{ .Image }}",
+      "imageNotFound": "Warning: Image file not found, skipping: {{ .Image }}",
+      "invalidKeepAlive": "Invalid keep-alive setting provided. Expected a boolean value (true/false), but received: {{ .Value }}",
+      "invalidOption": "Invalid option value: {{ .Value }}."
+    },
+    "lllm": {
+      "undefinedParam": "Undefined parameter set.",
+      "reasoningNotSupported": "Model does not support reasoning.",
+      "invalidReasoningType": "Invalid reasoning type, broken JSON config.",
+      "promptMissing": "No prompts were provided either by the CLI or the config file, aborting.",
+      "fileNotFound": "File not found: {{ .FilePath }}",
+      "sourceRequired": "Source path is required.",
+      "sourceTargetRequired": "Source and target paths are required.",
+      "noFilesFound": "No files found matching the criteria (extension: .{{ .Extension }}, filters applied).",
+      "targetFileExists": "Target path already exists: {{ .TargetPath }}",
+      "sourceAndTargetMustBeDifferent": "Source and target paths must be different.",
+      "invalidFileSize": "File size exceeds the maximum limit of {{ .MAX_SIZE_MB }} MB.",
+      "emptyFile": "File is empty or contains only whitespace.",
+      "idleTimeOut": "Idle timeout exceeded. No data received from the server.",
+      "hardTimeOut": "Hard timeout exceeded. The request took too long to complete.",
+      "tExceeded": "Idle timeout exceeded",
+      "unknownOpenAIError": "An unknown error occurred with the API.",
+      "openaiApiError": "API call failed with status {{ .Status }}: {{ .Message }}",
+      "networkErrorOpenAI": "Network error when calling {{ .URL }}.",
+      "networkErrorReason": " Reason: {{ .Code }}",
+      "responseNull": "Response body is null",
+      "progressFileDoesNotExist": "Progress file for hash {{ .Hash }} does not exist.",
+      "llmAPICall": "Error during LLM API calls: ",
+      "initializingBatch": "Error initializing batch processing.",
+      "failedLock": "Failed to create lock file.",
+      "failedToSaveProgress": "Failed to save progress.",
+      "whileCalling_deleteProgressEntry": " while calling deleteProgressEntry.",
+      "stripNewLinesTypeError": "Input must be a string or an array of strings.",
+      "invalidFormat": "Invalid format '{{ .Format }}'. Supported formats are {{ .Available }}.",
+      "jsonlGenError": "An error occurred during JSONL file generation."
+    },
+    "c": {
+      "co": {
+        "coError": "Warning: Could not load module for command {{ .Command }}. Skipping completion generation."
+      },
+      "cfg": {
+        "editorNotFound": "No $EDITOR environment variable found. Please set $EDITOR to your preferred text editor.",
+        "failedToWriteLocale": "Failed to write locale file: {{ .ErrorMessage }}",
+        "invalidLocale": "Invalid locale: {{ .Lang }}."
+      },
+      "mg": {
+        "extensionRequired": "File extension is required. Use the -e or --extension flag."
+      },
+      "rm": {},
+      "cm": {
+        "missingArgs": "Error: Missing required arguments. Expected <file1> <file2> <target>",
+        "invalidWidth": "Invalid column width size: {{ .Width }}. Width must be a positive integer.",
+        "diffLineCount": "Error: The input files have a different amount of non-blank lines.",
+        "diffLineCount1": "- Input 1 ({{ .File1 }}) has {{ .Lines1 }} valid lines.",
+        "diffLineCount2": "- Input 2 ({{ .File2 }}) has {{ .Lines2 }} valid lines."
+      },
+      "sp": {
+        "invalidSplitSize": "Invalid size: {{ .Size }}. Must be a positive number."
+      },
+      "st": {
+        "delimiterPairRequired": "Both start and end delimiters are required."
+      },
+      "tc": {
+        "tokenizerDoesNotExist": "Tokenizer for preset '{{ .PresetName }}' does not exist.",
+        "modelNotFoundForDownload": "Model \"{{ .ModelName }}\" not found.",
+        "failedToDownload": "Failed to download {{ .ModelUrl }}: {{ .Status }} {{ .StatusText }}",
+        "modelDownloadError": "Error during model download: {{ .ErrorMessage }}",
+        "tokenizerFilesNotFound": "Failed to load tokenizer files for {{ .TokenizerName }}",
+        "poolShuttingDown": "Worker pool is shutting down.",
+        "workerCrashedCode": "Worker crashed with code {{ .Code }}."
+      }
+    }
+  },
+  "help": {
+    "generic": {
+      "header": "telocity: A tool for batch processing text with LLMs.",
+      "usage": "Usage: telocity <command> [options]",
+      "commandHeader": "Commands:",
+      "commandDescriptions": {
+        "tr": "Translate a file chunk by chunk.",
+        "tf": "Apply a transformation prompt to a file chunk by chunk.",
+        "os": "Execute a single prompt with optional file context.",
+        "bg": "Generate a JSONL file for batch processing.",
+        "cm": "Compare and merge two files side-by-side into a single output file.",
+        "rd": "Simple html based plain text reader.",
+        "st": "Strip or extract content between delimiters in a file.",
+        "mg": "Merge multiple text files into a single file.",
+        "sp": "Split a large file into smaller parts.",
+        "avg": "Calculate average line length of a file.",
+        "tc": "Count tokens in a file for a specific model.",
+        "rm": "Remove progress files for completed or stuck jobs.",
+        "cfg": "Manage application configuration."
+      },
+      "footer": "For more information on any command, use `telocity <command> --help`.",
+      "globalOptionsHeader": "Global Options:",
+      "flags": {
+        "version": "Show application version."
+      }
+    },
+    "commands": {
+      "avg": {
+        "usage": "Usage: telocity avg <source_path>",
+        "description": "Calculates the average number of characters (graphemes) and bytes per non-empty line in a file.",
+        "flags": {}
+      },
+      "cfg": {
+        "usage": "Usage: telocity cfg [options]",
+        "description": "Manages the application configuration.",
+        "flags": {
+          "edit": "Open the user configuration file in the default editor.",
+          "remove": "Delete the user configuration files (prompts for confirmation).",
+          "lang": "Set the application language."
+        },
+        "footer": "Supported locales:\n{{ .LocaleList }}"
+      },
+      "rm": {
+        "usage": "Usage: telocity rm <source_path> [options]",
+        "description": "Removes progress-tracking files.",
+        "flags": {
+          "all": "Remove all progress files.",
+          "force": "Force deletion without confirmation."
+        }
+      },
+      "cm": {
+        "usage": "Usage: telocity cm <file1> <file2> <target> [options]",
+        "description": "Compare and merge two files side-by-side into a single output file.",
+        "flags": {
+          "width": "Set the width (in columns) for each half of the output. (default: {{ .Width }})",
+          "force": "Force the merge even if the two input files have a different number of lines."
+        }
+      },
+      "mg": {
+        "usage": "Usage: telocity mg <source_directory> [target_directory] [options]",
+        "description": "Recursively finds and merges text files from a source directory. Supports glob filtering via CLI flags or .mginclude/.mgignore files found in the source or current directory.",
+        "flags": {
+          "extension": "The file extension to look for (required).",
+          "include": "Glob patterns to include (colon-separated, e.g., \"src/**:libs/**\").",
+          "exclude": "Glob patterns to exclude (colon-separated, e.g., \"tests/**:node_modules/**\")."
+        }
+      },
+      "os": {
+        "usage": "Usage: telocity os \"<prompt>\" [output_file] [options]",
+        "description": "Executes a single, one-shot prompt against an LLM. It can take context from a file (--file), standard input (stdin), and images (--image). The LLM's output is streamed to the terminal or saved to [output_file] if provided.",
+        "flags": {
+          "file": "Path to a text file to be appended to the prompt as context.",
+          "outfile": "Path to a file for saving the LLM's output. This provides an alternative to specifying [output_file] as a positional argument.",
+          "image": "Path to image(s) for visual context. Supports glob patterns and colon-separated lists (e.g., \"img1.jpg:*.png\"). Supported formats: png, jpg/jpeg, gif, webp.",
+          "params": "Select a model parameter preset (default: {{ .DefaultModel }}).",
+          "model": "Override the model name specified in the preset.",
+          "url": "Override the API endpoint URL.",
+          "apikey": "Provide an API key for the request.",
+          "reason": "Enable reasoning mode for presets that support it."
+        },
+        "footer": "Available Presets:\n{{ .ModelParamList }}"
+      },
+      "sp": {
+        "usage": "Usage: telocity sp <source_path> <target_directory> [options]",
+        "description": "Splits a large file into smaller parts based on a specified size, ensuring that lines are not broken.",
+        "flags": {
+          "size": "The maximum size of each part in megabytes (default: {{ .Size }})."
+        }
+      },
+      "st": {
+        "usage": "Usage: telocity st <source_path> <target_path> [options]",
+        "description": "Strips or extracts content between specified delimiters from a file.",
+        "flags": {
+          "startdelimiter": "The starting delimiter.",
+          "enddelimiter": "The ending delimiter.",
+          "params": "Use start/end delimiters from a preset.",
+          "extracttag": "Extract content between delimiters instead of removing it.",
+          "compress": "Compress empty lines in the output.",
+          "unformat": "Removes basic markdown formatting (bold/italics)"
+        },
+        "footer": "Available Presets with Tags:\n{{ .ReasoningTagParamList }}"
+      },
+      "tc": {
+        "usage": "Usage: telocity tc <source_path> [options]",
+        "description": "Counts the number of tokens in a file using a model-specific tokenizer.",
+        "flags": {
+          "chunksize": "Override the average per X amount of lines count of tokens.",
+          "params": "The model preset whose tokenizer to use (default: {{ .DefaultModel }})."
+        },
+        "footer": "Available Tokenizers:\n{{ .TokenParamList }}"
+      },
+      "tf": {
+        "usage": "Usage: telocity tf <source_path> <target_path> [options]",
+        "description": "Applies a transformation prompt to a source file, processing it in chunks. When using `--image`, the source file should contain the prompt for the image(s). In this mode, avoid setting a custom `--chunksize` to ensure the prompt is processed as a single unit.",
+        "flags": {
+          "chunksize": "Number of lines per chunk (default: {{ .ChunkSize }}).",
+          "batchsize": "Number of chunks to process per batch (default: {{ .BatchSize }}).",
+          "parallel": "Concurrency limit (default: {{ .Parallel }}).",
+          "prompt": "An optional instruction to prepend to the source file content. Generally omitted when using the --image flag.",
+          "image": "Path to image(s) for visual context. Supports glob patterns and colon-separated lists (e.g., \"img1.jpg:*.png\"). Supported formats: png, jpg/jpeg, gif, webp.",
+          "sysprompt": "Set a custom system prompt.",
+          "params": "Select a model parameter preset (default: {{ .DefaultModel }}).",
+          "model": "Override the model name from the preset.",
+          "url": "Override the API endpoint URL.",
+          "apikey": "Provide an API key.",
+          "wait": "Set a delay (in seconds) between API calls (default: {{ .Delay }}).",
+          "retrywait": "Set a minimum wait time (in seconds) before retrying a failed API call (default: {{ .RetryDelay }}).",
+          "reason": "Enable reasoning mode for presets that support it."
+        },
+        "footer": "Available Presets:\n{{ .ModelParamList }}"
+      },
+      "tr": {
+        "usage": "Usage: telocity tr <source_path> <target_path> [options]",
+        "description": "Translates a file from a source language to a target language, processing it in chunks.",
+        "flags": {
+          "chunksize": "Number of lines per chunk (default: {{ .ChunkSize }}).",
+          "batchsize": "Number of chunks to process per batch (default: {{ .BatchSize }}).",
+          "parallel": "Concurrency limit (default: {{ .Parallel }}).",
+          "source": "Source language (default: \"{{ .SourceLanguage }}\").",
+          "target": "Target language (default: \"{{ .TargetLanguage }}\").",
+          "context": "Provide additional context for the translation.",
+          "params": "Select a model parameter preset (default: {{ .DefaultModel }}).",
+          "model": "Override the model name from the preset.",
+          "url": "Override the API endpoint URL.",
+          "apikey": "Provide an API key.",
+          "wait": "Set a delay (in seconds) between API calls (default: {{ .Delay }}).",
+          "retrywait": "Set a minimum wait time (in seconds) before retrying a failed API call (default: {{ .RetryDelay }}).",
+          "reason": "Enable reasoning mode for presets that support it."
+        },
+        "footer": "Available Presets:\n{{ .ModelParamList }}"
+      },
+      "bg": {
+        "usage": "Usage: telocity bg [options] <source_file> <target_jsonl_file>",
+        "description": "Generates a JSONL file for batch processing translations from a source text file.",
+        "flags": {
+          "format": "The output format for the JSONL file.",
+          "chunksize": "Number of lines per chunk/request. (default: {{ .ChunkSize }})",
+          "model": "Overrides the model specified in the parameter set.",
+          "params": "Parameter set to use for prompt and model configuration. (default: {{ .DefaultModel }})",
+          "source": "Source language for translation prompts.",
+          "target": "Target language for translation prompts.",
+          "context": "Additional context to include in the prompt for each chunk.",
+          "reason": "Use the 'reasoning' variant of the selected model parameter set."
+        },
+        "footer": "\nAvailable Parameter Sets:\n{{ .ModelParamList }}\n\nAvailable JSONL Formats:\n{{ .FormatsList }}"
+      },
+      "rd": {
+        "usage": "Usage: telocity rd <source_path>",
+        "description": "Launches a local web server to display a text file in a simple reader.",
+        "flags": {
+          "basic": "Use a simple vertical scrolling layout instead of the default e-book pagination. Better performance on very large files + good for testing browser built-in translation functions."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "telocity",
+  "version": "1.1.10",
+  "private": true,
+  "description": "A CLI script for basic local LLM interactions.",
+  "author": "9iqdispatcher",
+  "bin": {
+    "telocity": "./bin/start.ts"
+  },
+  "files": [
+    "start.ts",
+    "tokenworker.ts",
+    "src/",
+    "data/",
+    "LICENSE-APACHE-2.0",
+    "NOTICE"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./core": {
+      "import": "./src/libs/core/index.ts"
+    },
+    "./LLM": {
+      "import": "./src/libs/LLM/index.ts"
+    },
+    "./thirdparty": {
+      "import": "./src/libs/thirdparty/index.ts"
+    },
+    "./types": {
+      "import": "./src/libs/types/index.ts"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "clean:strings": "bun ./scripts/cleanstrings.ts",
+    "pretest": "bun clean:strings && bun typecheck && bun lint && bun i18ns && bun confs",
+    "typecheck": "tsgo --noEmit",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:html": "prettier ./src/libs/misc/basicreader.ts -w && prettier ./src/libs/misc/paginatedreader.ts -w",
+    "fmt:check": "oxfmt --check",
+    "i18ns": "bun ./scripts/i18nvalidator.ts",
+    "confs": "bun ./scripts/configvalidator.ts",
+    "test": "bun test",
+    "start": "bun ./bin/start.ts",
+    "build:bin": "bun build.bin.ts",
+    "build:bin:a": "bun build.bin.js --all",
+    "build:bin:c": "bun build.bin.js --compress",
+    "build:bin:ac": "bun build.bin.js --all --compress",
+    "build:node:esm": "bun build ./bin/start.ts --outdir ./dist --target=node --splitting --minify --format=esm && mkdir -p dist/worker && cp src/libs/thirdparty/worker/tokenworker.js dist/worker/tokenworker.js",
+    "build:node:cjs": "bun build ./bin/startiife.ts --outfile ./dist/start.cjs --target=node --bundle --minify --format=cjs",
+    "translate": "bun ./scripts/make_project_translations.ts",
+    "mockserv": "bun ./scripts/mockserv.ts",
+    "mockdown": "bun ./scripts/mockserv.ts --markdown",
+    "mockfail": "bun ./scripts/mockfail.ts",
+    "mocktimeout": "bun ./scripts/mockfail.ts --timeout"
+  },
+  "dependencies": {
+    "fast-string-width": "^3.0.2",
+    "glob": "^13.0.6"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.11",
+    "@typescript/native-preview": "^7.0.0-dev.20260324.1",
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0"
+  }
+}

@@ -1,0 +1,6 @@
+root        ::= char+
+char        ::= ascii | cjk-punct
+
+ascii       ::= [\u0020-\u007E\t\r\n]
+
+cjk-punct   ::= [\u2000-\u206F\u3000-\u303F\uFF00-\uFFEF]
