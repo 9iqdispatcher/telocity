@@ -2,7 +2,7 @@ just my personal presets for llama.cpp which can serve as examples
 
 [source,sh]
 ----
-llama-server --offline --grammar-file $LLAMA_CNF_DIR/latin9.gbnf --samplers "penalties;top_k;top_p;temperature" --models-preset $LLAMA_CNF_DIR/presets.ini --models-max 1 --webui-config-file $LLAMA_CNF_DIR/webuiconfig.json --reasoning-budget 2048 --reasoning-budget-message "[Constraint Reached: Reasoning budget exhausted. Pivoting immediately to generate output based on current structure.]"
+llama-server --direct-io --threads 12 --offline --grammar-file $LLAMA_CNF_DIR/latin9.gbnf --samplers "penalties;top_k;top_p;temperature" --models-preset $LLAMA_CNF_DIR/presets.ini --models-max 1 --webui-config-file $LLAMA_CNF_DIR/webuiconfig.json --reasoning-budget 2048 --reasoning-budget-message "[Constraint Reached: Reasoning budget exhausted. Pivoting immediately to generate output based on current structure.]"
 ----
 
 link:otherpresets.json[otherpresets.json] shows how other models like completion based APIs might be implemented as presets.
